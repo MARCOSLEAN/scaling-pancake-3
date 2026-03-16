@@ -1,0 +1,19 @@
+name: Continuous Deployment
+
+on:
+  workflow_run:
+    workflows: ["Continuous Delivery"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Deploy simulation
+      run: |
+        echo "Implantação do aplicativo..."
+        echo "Aplicação implantada com sucesso!"

@@ -1,0 +1,28 @@
+name: Continuous Delivery
+
+on:
+  workflow_run:
+    workflows: ["Continuous Integration"]
+    types:
+      - completed
+
+jobs:
+  delivery:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Build artifact
+      run: |
+        mkdir build
+        cp app.py build/
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: application-build
+        path: build/
