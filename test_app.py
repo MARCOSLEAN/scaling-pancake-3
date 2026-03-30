@@ -1,9 +1,15 @@
-from app import soma, subtracao
+from app import app
 
 
 def test_soma():
-    assert soma(2, 3) == 5
+    client = app.test_client()
+    response = client.get("/soma/2/3")
+    assert response.status_code == 200
+    assert response.json["resultado"] == 5
 
 
 def test_subtracao():
-    assert subtracao(5, 2) == 3
+    client = app.test_client()
+    response = client.get("/subtracao/5/2")
+    assert response.status_code == 200
+    assert response.json["resultado"] == 3

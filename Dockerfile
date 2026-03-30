@@ -1,10 +1,19 @@
-FROM python:3.11-slim 
+FROM python:3.11-slim
 
-WORKDIR /usr/src/app
+# Evita criar arquivos .pyc
+ENV PYTHONDONTWRITEBYTECODE=1
 
-COPY requirements.txt ./
+# Evita buffer no output
+ENV PYTHONUNBUFFERED=1
+
+WORKDIR /app
+
+COPY requirements.txt .
+
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD ["python", "./app.py"]
+EXPOSE 5000
+
+CMD ["python", "app.py"]
