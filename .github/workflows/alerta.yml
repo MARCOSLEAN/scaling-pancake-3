@@ -13,6 +13,6 @@ jobs:
       - name: Enviar mensagem para Discord
         run: |
           curl -X POST -H "Content-Type: application/json" \
-          -d '{\"content": \"Novo push realizado no repositorio!\"}' \
+          --data '{"content": "Novo push realizado com sucesso!"}' \
           ${{ secrets.DISCORD_WEBHOOK }}
           
